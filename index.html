@@ -20,6 +20,9 @@
             <a href="#" class="logo">
                 <i class="fas fa-cookie-bite" style="color: #000;"></i> Juds Confeitaria
             </a>
+            <div class="mobile-menu-icon">
+                <i class="fas fa-bars"></i>
+            </div>
             <nav class="nav">
                 <ul class="nav-list">
                     <li><a href="#">Início</a></li>
@@ -49,17 +52,20 @@
                 <span class="section-label">Nossos Produtos</span>
                 <div class="products-grid">
                     <div class="product-item">
-                        <img src="images/Choconinho-img.jpeg" alt="Bolos">
+                        <img src="images/Mandioca-img.jpeg" alt="Bolos" class="product-img-trigger"
+                            style="cursor: pointer;">
                         <h3>Bolos</h3>
                         <p>Deliciosos bolos para todas as ocasiões.</p>
                     </div>
                     <div class="product-item">
-                        <img src="images/doces-img.jpg" alt="Doces">
+                        <img src="images/doces-img.jpg" alt="Doces" class="product-img-trigger"
+                            style="cursor: pointer;">
                         <h3>Doces</h3>
                         <p>Variedade de doces para satisfazer seu paladar.</p>
                     </div>
                     <div class="product-item">
-                        <img src="images/Salgados-img.jpeg" alt="Salgados">
+                        <img src="images/Salgados-img.jpeg" alt="Salgados" class="product-img-trigger"
+                            style="cursor: pointer;">
                         <h3>Salgados</h3>
                         <p>Opções salgadas saborosas e nutritivas.</p>
                     </div>
@@ -87,7 +93,7 @@
                         </div>
                     </div>
                     <div class="about-card">
-                        <img src="images/Mandioca-img.jpeg" alt="Ingredientes">
+                        <img src="images/MiniChocolate.jpg" alt="Ingredientes">
                         <div class="about-card-content">
                             <h3>Ingredientes Premium</h3>
                             <p>Utilizamos apenas os melhores ingredientes do mercado.</p>
@@ -172,11 +178,15 @@
             <span class="close-modal">&times;</span>
             <h2>Escolha como pedir</h2>
             <div class="delivery-options">
-                <a href="#" class="delivery-btn whatsapp"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-                <a href="#" class="delivery-btn ifood">iFood</a>
-                <a href="#" class="delivery-btn menudino">MenuDino</a>
+                <a href="https://wa.me/c/5511920393362" class="delivery-btn whatsapp" target="_blank"><i
+                        class="fab fa-whatsapp"></i> WhatsApp</a>
+                <a href="https://www.ifood.com.br/delivery/diadema-sp/juds-confeitaria-canhema/948a2a84-0afd-47b1-bf8e-dec28db76861?UTM_Medium=share"
+                    class="delivery-btn ifood" target="_blank">iFood</a>
+                <a href="https://confeitariajuds.menudino.com/" class="delivery-btn menudino"
+                    target="_blank">MenuDino</a>
                 <a href="#" class="delivery-btn ketta">Ketta</a>
-                <a href="#" class="delivery-btn food99">99Food</a>
+                <a href="https://oia.99app.com/dlp9/RxmRyF?area=BR" class="delivery-btn food99"
+                    target="_blank">99Food</a>
             </div>
         </div>
     </div>
@@ -186,10 +196,17 @@
         const modal = document.getElementById("deliveryModal");
         const btn = document.getElementById("openModalBtn");
         const span = document.getElementsByClassName("close-modal")[0];
+        const productTriggers = document.querySelectorAll('.product-img-trigger');
 
-        btn.onclick = function () {
+        function openModal() {
             modal.style.display = "block";
         }
+
+        btn.onclick = openModal;
+
+        productTriggers.forEach(trigger => {
+            trigger.onclick = openModal;
+        });
 
         span.onclick = function () {
             modal.style.display = "none";
@@ -199,6 +216,16 @@
             if (event.target == modal) {
                 modal.style.display = "none";
             }
+        }
+
+        // Mobile Menu Logic
+        const mobileMenuIcon = document.querySelector('.mobile-menu-icon');
+        const navList = document.querySelector('.nav-list');
+
+        if (mobileMenuIcon) {
+            mobileMenuIcon.addEventListener('click', () => {
+                navList.classList.toggle('active');
+            });
         }
     </script>
 </body>
